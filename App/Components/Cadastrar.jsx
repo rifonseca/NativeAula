@@ -24,7 +24,7 @@ const Cadastrar = ({ navigation }) => {
 
         //envio de informações para a API cadastrar no banco de dados
         try {
-            await axios.post('http://localhost', formData);
+            await axios.post('http://10.0.2.2:8085/api/create', formData);
             Alert.alert('Cadastro realizado com sucesso');
         } catch (error) {
             if (error.response.status === 401) {
