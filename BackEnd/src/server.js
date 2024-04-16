@@ -1,10 +1,12 @@
 const express = require("express");
+const router = require("./routers");
 const client = require("../config/db");
 const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(router);
 
 app.use((req,res,next) => {
     //Qualquer endereço pode realizar requisição
