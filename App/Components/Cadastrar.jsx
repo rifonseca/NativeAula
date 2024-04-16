@@ -26,6 +26,7 @@ const Cadastrar = ({ navigation }) => {
         try {
             await axios.post('http://10.0.2.2:8085/api/create', formData);
             Alert.alert('Cadastro realizado com sucesso');
+            navigation.navigate('Home');
         } catch (error) {
             if (error.response.status === 401) {
                 setMensagem('O ID' + formData.id + 'já existe na base de dados')
