@@ -279,6 +279,8 @@ const Atualizar = ({ navigation, route }) => {
       idade: idade
     };
 
+    console.log(data);
+    
     axios.put(`http://10.0.2.2:8082/api/update/${id}`, data)
       .then(response => {
         Alert.alert('Sucesso', 'Usuário atualizado com sucesso!');
