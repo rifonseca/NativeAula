@@ -53,6 +53,47 @@ const userController = {
         catch(error){
             return error
         }
+    },
+
+    //cadastrar um novo usuário no banco 
+    registerSenai: async(req,res)=>{
+        const {id,nome,sobrenome,email,senha} = req.body;
+
+        try{
+            const sql = await clientController.getByEmail(email);
+
+            if(sql.length > 0){
+                res.status(401).json({msg: 'O email já está cadastrado na base de dados, insira um email diferente'});
+            }
+            else{
+                await clientController.registerSenai(id,nome,sobrenome,email,senha);
+                res.status(201).json({msg:"Usuário cadastrado com sucesso"});
+            }
+        }
+        catch(error){
+            console.log(error);
+            res.status(500).json({msg:"Ocorreu um erro durante o registro do usuário"});
+        }
+    },
+
+    login:async(req,res)=>{
+        let {email,senha} = req.body;
+
+        try{
+            const sql = await clientController.validateLogin(email,senha);
+
+            if(sql.length > 0){
+                res.status(200).json({msg: "Email e senha validados com sucesso!!!"})
+            }
+            else{
+                res.status(401).json({msg:"Email ou senha incorretos"});
+            }
+        }
+        catch(error){
+            if(error){
+                res.status(500).json(error);
+            }
+        }
     }
 };
 

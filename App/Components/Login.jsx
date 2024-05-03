@@ -47,7 +47,7 @@ const Login = ({navigation}) => {
 
     return(
         <View style={styles.container}>
-            <Image source={require('../img')} style={styles.logo}/>
+            <Image source={require('../img/senai.png')} style={styles.logo}/>
             <TextInput
             style={styles.input}
             placeholder="Email"
