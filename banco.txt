@@ -1,0 +1,11 @@
+CREATE TABLE images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image_path VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE cadastro_imagem(
+    id int PRIMARY KEY,
+    nome varchar(50),
+    sobrenome varchar(50),
+    idade varchar(5)
+);

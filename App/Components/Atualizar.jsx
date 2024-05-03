@@ -265,7 +265,7 @@ const Atualizar = ({ navigation, route }) => {
   const [sobrenome, setSobrenome] = useState('');
   const [idade, setIdade] = useState('');
 
-  const id = route.params.id; // Obtém o ID passado da navegação
+  const id = route.params.id //Obter o id por parâmetro
 
   const handleAtualizar = () => {
     if (!nome || !sobrenome || !idade) {
