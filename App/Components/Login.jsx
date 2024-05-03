@@ -22,7 +22,7 @@ const Login = ({navigation}) => {
             }
 
             //Enviar os dados para a API 
-            const response = await axios.post('http://localhost:8085');
+            const response = await axios.post('http://10.0.2.2:8085/api/validate',data);
 
             //Verificar se o login foi efetuado com sucesso
             if(response.status === 200){
