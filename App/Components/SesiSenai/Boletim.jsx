@@ -34,7 +34,7 @@ const Boletim = ({ navigation }) => {
             ))}
             <Text style={styles.media}>Média:{media.toFixed(1)}</Text>
             <Text style={[styles.status, { color: statusColor }]}>{statusText}</Text>
-            <View style={styles.Button}>
+            <View style={styles.buttonutton}>
                 <Button title="Voltar para a Home" color="red" onPress={()=>navigation.goBack()}/>
             </View>
         </View>

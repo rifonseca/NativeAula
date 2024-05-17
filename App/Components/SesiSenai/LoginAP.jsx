@@ -56,7 +56,7 @@ const LoginAP = ({navigation}) =>{
     }
 
     const handleRegistroAluno = () =>{
-        navigation.navigate('Registro');
+        navigation.navigate('RegistroAluno');
     }
 
     const handleRegistroProfessor = () =>{
