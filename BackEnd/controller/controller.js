@@ -57,7 +57,9 @@ const userController = {
 
     //cadastrar um novo usuário no banco 
     registerSenai: async(req,res)=>{
-        const {id,nome,sobrenome,email,senha} = req.body;
+        let {id,nome,sobrenome,email,senha} = req.body;
+
+        let getEmail = email.toLowerCase();
 
         try{
             const sql = await clientController.getByEmail(email);
@@ -76,25 +78,32 @@ const userController = {
         }
     },
 
-    login:async(req,res)=>{
-        let {email,senha} = req.body;
-
-        try{
-            const sql = await clientController.validateLogin(email,senha);
-
-            if(sql.length > 0){
-                res.status(200).json({msg: "Email e senha validados com sucesso!!!"})
+    login: async (req, res) => {
+        let { email, senha } = req.body;
+    
+        try {
+            // Verifica se o email e a senha correspondem aos registros no banco de dados
+            const sql = await clientController.validateLogin(email, senha);
+    
+            if (sql.length > 0) {
+                // Compara o email e a senha fornecidos com os do banco de dados
+                if (sql[0].email === email && sql[0].senha === senha) {
+                    // Se as credenciais forem válidas, retorna sucesso
+                    res.status(200).json({ msg: "Email e senha validados com sucesso!!!" });
+                } else {
+                    // Se as credenciais não coincidirem, retorna erro de autenticação
+                    res.status(401).json({ msg: "Email ou senha incorretos" });
+                }
+            } else {
+                // Se não houver registros correspondentes, retorna erro de autenticação
+                res.status(401).json({ msg: "Email ou senha incorretos" });
             }
-            else{
-                res.status(401).json({msg:"Email ou senha incorretos"});
-            }
-        }
-        catch(error){
-            if(error){
-                res.status(500).json(error);
-            }
+        } catch (error) {
+            // Em caso de erro interno, retorna status 500 e detalhes do erro
+            res.status(500).json({ msg: "Erro interno do servidor", error: error.message });
         }
     }
 };
+    
 
 module.exports = userController;
