@@ -12,7 +12,7 @@ const LoginAP = ({navigation}) =>{
                 Alert.alert("Todos os campos são obrigatórios");
             }
             else{
-                const response = await axios.post('http://localhost:8085/rota', {
+                const response = await axios.post('http://10.0.2.2:8085/api/login/aluno', {
                     email:email,
                     password:password
                 });
@@ -35,7 +35,7 @@ const LoginAP = ({navigation}) =>{
 
     const handleLoginProfessor = async() =>{
         try{
-            const response = await axios.post('http://localhost:8085/professor',{
+            const response = await axios.post('http://10.0.2.2:8085/api/login/professor',{
                 email:email,
                 password:password
             });
@@ -64,7 +64,7 @@ const LoginAP = ({navigation}) =>{
     }
 
     const handleResetSenha = () => {
-        navigation.navigate('Reset');
+        navigation.navigate('ResetSenha');
     }
 
     return(

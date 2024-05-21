@@ -82,7 +82,7 @@ const Registro = ({ navigation }) => {
             };
 
             // URL da sua API para enviar os dados e a imagem
-            const apiUrl = 'http://10.0.2.2:8085/api/imagem';
+            const apiUrl = 'http://10.0.2.2:8085/api/registeraluno';
 
             // Dados a serem enviados para a API
             const data = {
