@@ -20,4 +20,6 @@ router.post('/api/resetpassword', clientController.resetPassword); //resetar a s
 router.post('/api/login/professor', clientController.loginProfessor); //login dos professores
 router.post('/api/registerprofessor', clientController.registerProfessor); //cadastrar professores
 
+router.get('/api/users/:id', clientController.getUserById);
+
 module.exports = router;

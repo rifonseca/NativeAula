@@ -6,28 +6,32 @@ const LoginAP = ({navigation}) =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLoginAluno = async() => {
-        try{
-            if(!email || !password){
+    const handleLoginAluno = async () => {
+        try {
+            if (!email || !password) {
                 Alert.alert("Todos os campos são obrigatórios");
-            }
-            else{
+            } else {
                 const response = await axios.post('http://10.0.2.2:8085/api/login/aluno', {
-                    email:email,
-                    password:password
+                    email: email,
+                    senha: password
                 });
 
-                //se o login foi bem sucedido
-                if(response.status === 200){
-                    navigation.navigate('Boletim');
-                }
-                else{
-                    //login mal sucedido
+                console.log(response.data);
+
+                if (response.status === 200) {
+                    const userData = {
+                        id:response.data.id,
+                        nome:response.data.nome,
+                        sobrenome:response.data.sobrenome,
+                        imagem:response.data.imagem
+                    }
+   
+                    navigation.navigate('Boletim', {userData});
+                } else {
                     Alert.alert('Erro', response.data.message);
                 }
             }
-        }
-        catch(error){
+        } catch (error) {
             console.log("Erro ao fazer o login do aluno: ", error);
             Alert.alert("Erro ao fazer o login do aluno");
         }

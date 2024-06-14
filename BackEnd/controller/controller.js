@@ -105,11 +105,15 @@ const userController = {
     login: async (req, res) => {
         let { email, senha } = req.body;
 
+        //console.log(req.body);
+
         try {
             const sql = await clientController.validateLoginStudents(email, senha);
 
+            console.log(sql[0]);
+
             if (sql.length > 0) {
-                res.status(200).json({ msg: "Email e senha validados com sucesso!!!" });
+                res.status(200).json(sql[0]);
 
             } else {
                 res.status(401).json({ msg: "Email ou senha incorretos" });
@@ -206,6 +210,24 @@ const userController = {
         catch(error){
             console.log("Erro ao redefinir a senha");
             res.status(500).json({msg:"Erro no servidor"})
+        }
+    },
+
+    // Método para obter usuário por ID
+    getUserById: async (req, res) => {
+        try {
+            let userId = req.params.id;
+
+            const user = await clientController.getUserById(userId);
+
+            if (user) {
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ msg: 'Usuário não encontrado' });
+            }
+        } catch (error) {
+            console.error('Erro ao buscar usuário por ID:', error);
+            res.status(500).json({ msg: 'Erro ao buscar usuário' });
         }
     },
 };

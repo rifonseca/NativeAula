@@ -94,6 +94,12 @@ const userModel = {
         return result;
     },
 
+    getUserById: async (id) => {
+        const result = await connection.query("SELECT * FROM registro_aluno WHERE id = ?", [id])
+            .catch(error => console.log(error));
+        return result[0];  // Assumindo que o resultado seja um array com um único usuário
+    },
+
 };
 
 module.exports = userModel;

@@ -5,6 +5,7 @@ import LoginAP from "./Components/SesiSenai/LoginAP";
 import Boletim from "./Components/SesiSenai/Boletim";
 import RegistroAluno from "./Components/SesiSenai/RegistroAluno";
 import ResetSenha from "./Components/SesiSenai/Reset";
+import Perfil from "./Components/SesiSenai/Perfil";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App () {
                 <Stack.Screen name="Boletim" component={Boletim}/>
                 <Stack.Screen name="RegistroAluno" component={RegistroAluno}/>
                 <Stack.Screen name="ResetSenha" component={ResetSenha}/>
+                <Stack.Screen name="Perfil" component={Perfil}/>
             </Stack.Navigator>
         </NavigationContainer>      
     )
